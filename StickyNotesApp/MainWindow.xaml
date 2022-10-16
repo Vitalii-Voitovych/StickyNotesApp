@@ -4,9 +4,53 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StickyNotesApp"
+        xmlns:uc="clr-namespace:StickyNotesApp.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="MainWindow" Height="608" Width="353"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        x:Name="MainView">
+    <Border CornerRadius="15"
+            Background="#FFFFFF">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Шапка застосунку -->
+            <Border BorderBrush="#374957"
+                    BorderThickness="0,0,0,0.6">
+                <DockPanel VerticalAlignment="Center">
+                    <TextBlock Text="StickyApp"
+                               Foreground="#374957"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Margin="5,0,0,0"/>
+                    <uc:IconButton Icon="Icons/cross.png"
+                                   Style="{StaticResource HeaderButtonStyle}"
+                                   DockPanel.Dock="Right"
+                                   Margin="5,0,5,0"/>
+                    <uc:IconButton Icon="Icons/minus.png"
+                                   Style="{StaticResource HeaderButtonStyle}"
+                                   HorizontalAlignment="Right"/>
+                </DockPanel>
+            </Border>
+            
+            <!-- Підвал застосунку -->
+            <Border BorderBrush="#374957"
+                    BorderThickness="0,0.6,0,0"
+                    Grid.Row="2">
+                <DockPanel Margin="16,0">
+                    <TextBox Style="{StaticResource SearchTextBoxStyle}"/>
+                    <uc:IconButton Icon="Icons/plus.png"
+                                   Style="{StaticResource HeaderButtonStyle}"
+                                   HorizontalAlignment="Right"/>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Border>
 </Window>

@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:StickyNotesApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/HeaderButton.xaml"/>
+                <ResourceDictionary Source="Styles/SearchTextBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

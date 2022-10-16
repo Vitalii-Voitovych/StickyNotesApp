@@ -8,8 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\cross.png" />
+    <None Remove="Icons\minus.png" />
+    <None Remove="Icons\plus.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
     <PackageReference Include="System.Text.Json" Version="6.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\cross.png" />
+    <Resource Include="Icons\minus.png" />
+    <Resource Include="Icons\plus.png" />
   </ItemGroup>
 
 </Project>
