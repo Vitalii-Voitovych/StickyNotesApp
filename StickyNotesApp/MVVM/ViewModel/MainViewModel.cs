@@ -8,10 +8,10 @@ namespace StickyNotesApp.MVVM.ViewModel
     public partial class MainViewModel : ObservableObject
     {
         [RelayCommand]
-        private void AddNewStickyNote()
+        private void OpenNewTextStickyNote()
         {
-            NewTextStickyNote addView = new NewTextStickyNote();
-            addView.ShowDialog();
+            NewTextStickyNote view = new NewTextStickyNote();
+            view.ShowDialog();
         }
 
         [RelayCommand]

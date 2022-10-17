@@ -9,6 +9,8 @@
                 <ResourceDictionary Source="Styles/HeaderButton.xaml"/>
                 <ResourceDictionary Source="Styles/SearchTextBox.xaml"/>
                 <ResourceDictionary Source="Styles/ColorButton.xaml"/>
+                <ResourceDictionary Source="Styles/AddButton.xaml"/>
+                <ResourceDictionary Source="Styles/ContextMenu.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

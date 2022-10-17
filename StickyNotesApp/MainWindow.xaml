@@ -27,7 +27,9 @@
             
             <!-- Шапка застосунку -->
             <Border BorderBrush="#374957"
-                    BorderThickness="0,0,0,0.6">
+                    BorderThickness="0,0,0,0.6"
+                    Background="Transparent"
+                    MouseLeftButtonDown="Border_MouseLeftButtonDown">
                 <DockPanel VerticalAlignment="Center">
                     <TextBlock Text="StickyApp"
                                Foreground="#374957"
@@ -55,9 +57,28 @@
                 <DockPanel Margin="16,0">
                     <TextBox Style="{StaticResource SearchTextBoxStyle}"/>
                     <uc:IconButton Icon="Icons/plus.png"
-                                   Style="{StaticResource HeaderButtonStyle}"
                                    HorizontalAlignment="Right"
-                                   Command="{Binding AddNewStickyNoteCommand}"/>
+                                   Style="{StaticResource AddButtonStyle}">
+                        <uc:IconButton.Resources>
+                            <local:BindingProxy x:Key="Proxy" Data="{Binding}"/>
+                        </uc:IconButton.Resources>
+                        <uc:IconButton.ContextMenu>
+                            <ContextMenu Background="#ffffff"
+                                         Style="{StaticResource ContextMenuStyle}">
+                                <MenuItem Header="Text"
+                                          Command="{Binding Source={StaticResource Proxy}, Path=Data.OpenNewTextStickyNoteCommand}">
+                                    <MenuItem.Icon>
+                                        <Image Source="Icons/textnote.png"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem Header="Image">
+                                    <MenuItem.Icon>
+                                        <Image Source="Icons/imagenote.png"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </uc:IconButton.ContextMenu>
+                    </uc:IconButton>
                 </DockPanel>
             </Border>
         </Grid>

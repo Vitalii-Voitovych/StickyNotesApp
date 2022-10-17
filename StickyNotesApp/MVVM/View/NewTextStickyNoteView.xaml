@@ -23,7 +23,8 @@
         </Grid.RowDefinitions>
 
         <Border CornerRadius="7,7,0,0"
-                Background="#FFFFFF">
+                Background="#FFFFFF"
+                MouseLeftButtonDown="Border_MouseLeftButtonDown">
             <DockPanel Margin="4,0">
                 <uc:IconButton Icon="/Icons/plus.png"
                                Style="{StaticResource HeaderButtonStyle}"
