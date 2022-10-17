@@ -1,0 +1,121 @@
+﻿<Window x:Class="StickyNotesApp.MVVM.View.NewTextStickyNote"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StickyNotesApp.MVVM.View"
+        xmlns:uc="clr-namespace:StickyNotesApp.UserControls"
+        xmlns:viewModel="clr-namespace:StickyNotesApp.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="NewTextStickyNote" Height="316" Width="286"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        x:Name="NewTextStickyNoteView">
+    <Window.DataContext>
+        <viewModel:NewTextStickyNoteViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border CornerRadius="7,7,0,0"
+                Background="#FFFFFF">
+            <DockPanel Margin="4,0">
+                <uc:IconButton Icon="/Icons/plus.png"
+                               Style="{StaticResource HeaderButtonStyle}"
+                               Width="24"
+                               Height="24"/>
+                <Rectangle Width="1"
+                           Height="14"
+                           Fill="#374957"
+                           Margin="5,0,0,0"/>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="7,0">
+                    <uc:IconButton Icon="/Icons/bold.png"
+                                   Style="{StaticResource HeaderButtonStyle}"
+                                   Width="12"
+                                   Height="12"
+                                   Margin="0,0,2.5,0"
+                                   Command="{Binding BoldTextCommand}"
+                                   CommandParameter="{Binding ElementName=TextBox, Path=Selection}"/>
+                    <uc:IconButton Icon="/Icons/italic.png"
+                                   Style="{StaticResource HeaderButtonStyle}"
+                                   Width="12"
+                                   Height="12"
+                                   Margin="2.5,0"
+                                   Command="{Binding ItalicStyleTextCommand}"
+                                   CommandParameter="{Binding ElementName=TextBox, Path=Selection}"/>
+                    <uc:IconButton Icon="/Icons/underline.png"
+                                   Style="{StaticResource HeaderButtonStyle}"
+                                   Width="12"
+                                   Height="12"
+                                   Margin="2.5,0,0,0"
+                                   Command="{Binding UnderlineTextCommand}"
+                                   CommandParameter="{Binding ElementName=TextBox, Path=Selection}"/>
+                </StackPanel>
+                <Rectangle Width="1"
+                           Height="14"
+                           Fill="#374957"
+                           Margin="5,0,0,0"/>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="3,0,0,0">
+                    <RadioButton Background="#C33F31"
+                                 Style="{StaticResource ColorButtonStyle}"
+                                 Command="{Binding ColorChangeCommand}"
+                                 CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                    <RadioButton Background="#3AAF97"
+                                 Style="{StaticResource ColorButtonStyle}"
+                                 IsChecked="True"
+                                 Command="{Binding ColorChangeCommand}"
+                                 CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                    <RadioButton Background="#F4CD3D"
+                                 Style="{StaticResource ColorButtonStyle}"
+                                 Command="{Binding ColorChangeCommand}"
+                                 CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                    <RadioButton Background="#DC7633"
+                                 Style="{StaticResource ColorButtonStyle}"
+                                 Command="{Binding ColorChangeCommand}"
+                                 CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                    <RadioButton Background="#48BA78"
+                                 Style="{StaticResource ColorButtonStyle}"
+                                 Command="{Binding ColorChangeCommand}"
+                                 CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                    <RadioButton Background="#53A8E1"
+                                 Style="{StaticResource ColorButtonStyle}"
+                                 Command="{Binding ColorChangeCommand}"
+                                 CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                    <RadioButton Background="#A568BD"
+                                 Style="{StaticResource ColorButtonStyle}"
+                                 Command="{Binding ColorChangeCommand}"
+                                 CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                </StackPanel>
+                <uc:IconButton Icon="/Icons/cross.png"
+                               Style="{StaticResource HeaderButtonStyle}"
+                               HorizontalAlignment="Right"
+                               Width="24"
+                               Height="24"
+                               Command="{Binding CloseCommand}"
+                               CommandParameter="{Binding ElementName=NewTextStickyNoteView}"/>
+            </DockPanel>
+        </Border>
+
+        <Border CornerRadius="0,0,7,7"
+                Grid.Row="1"
+                Background="{Binding Color}">
+            <RichTextBox Background="Transparent"
+                         BorderThickness="0"
+                         Margin="7,30,7,36"
+                         AcceptsTab="True"
+                         AcceptsReturn="True"
+                         Foreground="#15212B"
+                         FontSize="14"
+                         x:Name="TextBox"/>
+        </Border>
+    </Grid>
+</Window>

@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/HeaderButton.xaml"/>
                 <ResourceDictionary Source="Styles/SearchTextBox.xaml"/>
+                <ResourceDictionary Source="Styles/ColorButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

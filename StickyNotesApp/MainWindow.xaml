@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StickyNotesApp"
         xmlns:uc="clr-namespace:StickyNotesApp.UserControls"
+        xmlns:viewModel="clr-namespace:StickyNotesApp.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="608" Width="353"
         ResizeMode="NoResize"
@@ -12,6 +13,9 @@
         AllowsTransparency="True"
         Background="Transparent"
         x:Name="MainView">
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
     <Border CornerRadius="15"
             Background="#FFFFFF">
         <Grid>
@@ -33,10 +37,14 @@
                     <uc:IconButton Icon="Icons/cross.png"
                                    Style="{StaticResource HeaderButtonStyle}"
                                    DockPanel.Dock="Right"
-                                   Margin="5,0,5,0"/>
+                                   Margin="5,0,5,0"
+                                   Command="{Binding CloseCommand}"
+                                   CommandParameter="{Binding ElementName=MainView}"/>
                     <uc:IconButton Icon="Icons/minus.png"
                                    Style="{StaticResource HeaderButtonStyle}"
-                                   HorizontalAlignment="Right"/>
+                                   HorizontalAlignment="Right"
+                                   Command="{Binding MinimizeCommand}"
+                                   CommandParameter="{Binding ElementName=MainView}"/>
                 </DockPanel>
             </Border>
             
@@ -48,7 +56,8 @@
                     <TextBox Style="{StaticResource SearchTextBoxStyle}"/>
                     <uc:IconButton Icon="Icons/plus.png"
                                    Style="{StaticResource HeaderButtonStyle}"
-                                   HorizontalAlignment="Right"/>
+                                   HorizontalAlignment="Right"
+                                   Command="{Binding AddNewStickyNoteCommand}"/>
                 </DockPanel>
             </Border>
         </Grid>
