@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:StickyNotesApp"
         xmlns:uc="clr-namespace:StickyNotesApp.UserControls"
         xmlns:viewModel="clr-namespace:StickyNotesApp.MVVM.ViewModel"
+        xmlns:services="clr-namespace:StickyNotesApp.Services"
         mc:Ignorable="d"
         Title="MainWindow" Height="608" Width="353"
         ResizeMode="NoResize"
@@ -24,7 +25,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            
+
             <!-- Шапка застосунку -->
             <Border BorderBrush="#374957"
                     BorderThickness="0,0,0,0.6"
@@ -49,7 +50,51 @@
                                    CommandParameter="{Binding ElementName=MainView}"/>
                 </DockPanel>
             </Border>
-            
+
+            <!-- Тіло застосунку -->
+            <ListView Grid.Row="1"
+                      ItemsSource="{Binding StickyNotes}"
+                      HorizontalAlignment="Center"
+                      BorderThickness="0"
+                      x:Name="StickNoteList">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="7"
+                                Background="{Binding Color}"
+                                Margin="0,4"
+                                Padding="7"
+                                Width="316"
+                                MaxHeight="284">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="16"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Orientation="Horizontal"
+                                            Background="Transparent">
+                                    <uc:IconButton Icon="Icons/trash.png"
+                                                   Style="{StaticResource SmallButtonStyle}"
+                                                   Margin="2,0,0,0"
+                                                   Command="{Binding ElementName=StickNoteList, Path=DataContext.DeleteStickyNoteCommand}"
+                                                   CommandParameter="{Binding}"/>
+                                </StackPanel>
+                                <TextBox Background="Transparent"
+                                             BorderThickness="0"
+                                             Grid.Row="1"
+                                             Margin="0,7,0,0"
+                                             AcceptsTab="True"
+                                             AcceptsReturn="True"
+                                             Foreground="#15212B"
+                                             FontSize="14"
+                                             IsReadOnly="True"
+                                             Text="{Binding Text}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
             <!-- Підвал застосунку -->
             <Border BorderBrush="#374957"
                     BorderThickness="0,0.6,0,0"
@@ -58,7 +103,7 @@
                     <TextBox Style="{StaticResource SearchTextBoxStyle}"/>
                     <uc:IconButton Icon="Icons/plus.png"
                                    HorizontalAlignment="Right"
-                                   Style="{StaticResource AddButtonStyle}">
+                                   Style="{StaticResource ButtonContextMenuStyle}">
                         <uc:IconButton.Resources>
                             <local:BindingProxy x:Key="Proxy" Data="{Binding}"/>
                         </uc:IconButton.Resources>

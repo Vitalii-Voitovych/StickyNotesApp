@@ -29,36 +29,9 @@
                 <uc:IconButton Icon="/Icons/plus.png"
                                Style="{StaticResource HeaderButtonStyle}"
                                Width="24"
-                               Height="24"/>
-                <Rectangle Width="1"
-                           Height="14"
-                           Fill="#374957"
-                           Margin="5,0,0,0"/>
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            Margin="7,0">
-                    <uc:IconButton Icon="/Icons/bold.png"
-                                   Style="{StaticResource HeaderButtonStyle}"
-                                   Width="12"
-                                   Height="12"
-                                   Margin="0,0,2.5,0"
-                                   Command="{Binding BoldTextCommand}"
-                                   CommandParameter="{Binding ElementName=TextBox, Path=Selection}"/>
-                    <uc:IconButton Icon="/Icons/italic.png"
-                                   Style="{StaticResource HeaderButtonStyle}"
-                                   Width="12"
-                                   Height="12"
-                                   Margin="2.5,0"
-                                   Command="{Binding ItalicStyleTextCommand}"
-                                   CommandParameter="{Binding ElementName=TextBox, Path=Selection}"/>
-                    <uc:IconButton Icon="/Icons/underline.png"
-                                   Style="{StaticResource HeaderButtonStyle}"
-                                   Width="12"
-                                   Height="12"
-                                   Margin="2.5,0,0,0"
-                                   Command="{Binding UnderlineTextCommand}"
-                                   CommandParameter="{Binding ElementName=TextBox, Path=Selection}"/>
-                </StackPanel>
+                               Height="24"
+                               Command="{Binding SaveStickyNoteCommand}"
+                               CommandParameter="{Binding ElementName=NewTextStickyNoteView}"/>
                 <Rectangle Width="1"
                            Height="14"
                            Fill="#374957"
@@ -109,14 +82,16 @@
         <Border CornerRadius="0,0,7,7"
                 Grid.Row="1"
                 Background="{Binding Color}">
-            <RichTextBox Background="Transparent"
-                         BorderThickness="0"
-                         Margin="7,30,7,36"
-                         AcceptsTab="True"
-                         AcceptsReturn="True"
-                         Foreground="#15212B"
-                         FontSize="14"
-                         x:Name="TextBox"/>
+            <TextBox Background="Transparent"
+                     BorderThickness="0"
+                     Margin="7,30,7,36"
+                     TextWrapping="WrapWithOverflow"
+                     AcceptsTab="True"
+                     AcceptsReturn="True"
+                     Foreground="#15212B"
+                     FontSize="14"
+                     x:Name="TextBox"
+                     Text="{Binding StickyNote.Text}"/>
         </Border>
     </Grid>
 </Window>

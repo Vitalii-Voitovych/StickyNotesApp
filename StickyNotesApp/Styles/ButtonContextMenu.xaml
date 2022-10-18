@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:uc="clr-namespace:StickyNotesApp.UserControls">
     <Style TargetType="{x:Type uc:IconButton}"
-           x:Key="AddButtonStyle">
+           x:Key="ButtonContextMenuStyle">
         <Style.Triggers>
             <EventTrigger RoutedEvent="Click">
                 <EventTrigger.Actions>
@@ -25,14 +25,11 @@
                                 x:Name="Border">
                             <Grid VerticalAlignment="Stretch"
                                   HorizontalAlignment="Stretch">
-                                <Image Source="{TemplateBinding Icon}"/>
+                                <Image Source="{TemplateBinding Icon}"
+                                       Height="{TemplateBinding Height}"
+                                       Width="{TemplateBinding Width}"/>
                             </Grid>
                         </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="Button.IsPressed" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#E4E8EC"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

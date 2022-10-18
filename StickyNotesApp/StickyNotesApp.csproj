@@ -8,14 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Icons\bold.png" />
     <None Remove="Icons\cross.png" />
     <None Remove="Icons\imagenote.png" />
-    <None Remove="Icons\italic.png" />
     <None Remove="Icons\minus.png" />
     <None Remove="Icons\plus.png" />
     <None Remove="Icons\textnote.png" />
-    <None Remove="Icons\underline.png" />
+    <None Remove="Icons\trash.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,14 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Icons\bold.png" />
     <Resource Include="Icons\cross.png" />
     <Resource Include="Icons\imagenote.png" />
-    <Resource Include="Icons\italic.png" />
     <Resource Include="Icons\minus.png" />
     <Resource Include="Icons\plus.png" />
     <Resource Include="Icons\textnote.png" />
-    <Resource Include="Icons\underline.png" />
+    <Resource Include="Icons\trash.png" />
   </ItemGroup>
 
 </Project>
