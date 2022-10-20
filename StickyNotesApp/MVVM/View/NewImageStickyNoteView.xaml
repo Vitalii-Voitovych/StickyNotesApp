@@ -1,4 +1,4 @@
-﻿<Window x:Class="StickyNotesApp.MVVM.View.NewTextStickyNote"
+﻿<Window x:Class="StickyNotesApp.MVVM.View.NewImageStickyNoteView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:StickyNotesApp.MVVM.View"
         xmlns:uc="clr-namespace:StickyNotesApp.UserControls"
         xmlns:viewModel="clr-namespace:StickyNotesApp.MVVM.ViewModel"
+        xmlns:root="clr-namespace:StickyNotesApp"
         mc:Ignorable="d"
-        Title="NewTextStickyNote" Height="316" Width="286"
+        Title="NewImageStickyNote" Height="316" Width="286"
         ResizeMode="NoResize"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        x:Name="NewTextStickyNoteView">
+        x:Name="NewImageStickyNote">
     <Window.DataContext>
-        <viewModel:NewTextStickyNoteViewModel/>
+        <viewModel:NewImageStickyNoteViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -31,7 +32,23 @@
                                Width="24"
                                Height="24"
                                Command="{Binding SaveStickyNoteCommand}"
-                               CommandParameter="{Binding ElementName=NewTextStickyNoteView}"/>
+                               CommandParameter="{Binding ElementName=NewImageStickyNote}"/>
+                <Rectangle Width="1"
+                           Height="14"
+                           Fill="#374957"
+                           Margin="0,0,5,0"/>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                    <uc:IconRadioButton Icon="/Icons/pencil.png"
+                                        Style="{StaticResource HeaderIconButtonStyle}"
+                                        Margin="0,0,2.5,0"
+                                        IsChecked="True"
+                                        Command="{Binding EditModeCommand}"/>
+                    <uc:IconRadioButton Icon="/Icons/broom.png"
+                                        Style="{StaticResource HeaderIconButtonStyle}"
+                                        Margin="2.5,0,0,0"
+                                        Command="{Binding RemoveModeCommand}"/>
+                </StackPanel>
                 <Rectangle Width="1"
                            Height="14"
                            Fill="#374957"
@@ -75,23 +92,19 @@
                                Width="24"
                                Height="24"
                                Command="{Binding CloseCommand}"
-                               CommandParameter="{Binding ElementName=NewTextStickyNoteView}"/>
+                               CommandParameter="{Binding ElementName=NewImageStickyNote}"/>
             </DockPanel>
         </Border>
 
         <Border CornerRadius="0,0,7,7"
                 Grid.Row="1"
                 Background="{Binding Color}">
-            <TextBox Background="Transparent"
-                     BorderThickness="0"
-                     Margin="7,30,7,16"
-                     TextWrapping="WrapWithOverflow"
-                     AcceptsTab="True"
-                     AcceptsReturn="True"
-                     Foreground="#15212B"
-                     FontSize="14"
-                     x:Name="TextBox"
-                     Text="{Binding StickyNote.Text}"/>
+            <InkCanvas Background="Transparent"
+                       Margin="7,30,7,36"
+                       Width="272"
+                       Height="238"
+                       EditingMode="{Binding Mode}"
+                       Strokes="{Binding Strokes}"/>
         </Border>
     </Grid>
 </Window>

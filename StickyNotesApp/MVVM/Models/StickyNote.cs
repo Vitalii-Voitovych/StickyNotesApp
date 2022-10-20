@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System.Windows.Documents;
 using System.Windows.Ink;
-using System.Windows.Media;
 
 namespace StickyNotesApp.MVVM.Models
 {
@@ -12,5 +10,8 @@ namespace StickyNotesApp.MVVM.Models
 
         [ObservableProperty]
         private string color = "";
+
+        [ObservableProperty]
+        private byte[]? strokes;
     }
 }

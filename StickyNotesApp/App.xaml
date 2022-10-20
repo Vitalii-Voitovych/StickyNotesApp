@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Styles/ButtonContextMenu.xaml"/>
                 <ResourceDictionary Source="Styles/ContextMenu.xaml"/>
                 <ResourceDictionary Source="Styles/SmallButton.xaml"/>
+                <ResourceDictionary Source="Styles/HeaderRadioButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

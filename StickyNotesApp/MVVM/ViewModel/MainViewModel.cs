@@ -3,10 +3,10 @@ using CommunityToolkit.Mvvm.Input;
 using StickyNotesApp.MVVM.Models;
 using StickyNotesApp.MVVM.View;
 using StickyNotesApp.Services;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
-using System.Windows.Media;
+using System.Windows.Ink;
 
 namespace StickyNotesApp.MVVM.ViewModel
 {
@@ -26,9 +26,20 @@ namespace StickyNotesApp.MVVM.ViewModel
         }
 
         [RelayCommand]
+        private void OpenNewImageStickyNote()
+        {
+            NewImageStickyNoteView view = new NewImageStickyNoteView();
+            if (view.ShowDialog() == true)
+            {
+                StickyNotes = StickyNoteDataSaver.Load(Settings.Path);
+            }
+        }
+
+        [RelayCommand]
         private void DeleteStickyNote(StickyNote note)
         {
             StickyNotes.Remove(note);
+            StickyNoteDataSaver.Save(StickyNotes, Settings.Path);
         }
 
         [RelayCommand]
@@ -47,15 +58,6 @@ namespace StickyNotesApp.MVVM.ViewModel
         {
             StickyNotes = StickyNoteDataSaver.Load(Settings.Path);
             StickyNoteDataSaver.Save(StickyNotes, Settings.Path);
-            StickyNotes.ListChanged += StickyNotes_ListChanged;
-        }
-
-        private void StickyNotes_ListChanged(object? sender, ListChangedEventArgs e)
-        {
-            if (e.ListChangedType == ListChangedType.ItemDeleted)
-            {
-                StickyNoteDataSaver.Save(StickyNotes, Settings.Path);
-            }
         }
     }
 }

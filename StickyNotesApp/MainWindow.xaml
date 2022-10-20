@@ -17,6 +17,9 @@
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <local:StrokeCollectionConverter x:Key="StrokeCollectionConverter"/>
+    </Window.Resources>
     <Border CornerRadius="15"
             Background="#FFFFFF">
         <Grid>
@@ -57,6 +60,17 @@
                       HorizontalAlignment="Center"
                       BorderThickness="0"
                       x:Name="StickNoteList">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border CornerRadius="7"
@@ -82,13 +96,20 @@
                                 <TextBox Background="Transparent"
                                              BorderThickness="0"
                                              Grid.Row="1"
-                                             Margin="0,7,0,0"
+                                             Margin="7,30,7,16"
                                              AcceptsTab="True"
                                              AcceptsReturn="True"
                                              Foreground="#15212B"
                                              FontSize="14"
                                              IsReadOnly="True"
                                              Text="{Binding Text}"/>
+                                <InkCanvas Background="Transparent"
+                                           Grid.Row="1"
+                                           Margin="7,30,7,0"
+                                           Width="272"
+                                           Height="238"
+                                           EditingMode="None"
+                                           Strokes="{Binding Strokes, Converter={StaticResource StrokeCollectionConverter}}"/>
                             </Grid>
                         </Border>
                     </DataTemplate>
@@ -116,7 +137,8 @@
                                         <Image Source="Icons/textnote.png"/>
                                     </MenuItem.Icon>
                                 </MenuItem>
-                                <MenuItem Header="Image">
+                                <MenuItem Header="Image"
+                                          Command="{Binding Source={StaticResource Proxy}, Path=Data.OpenNewImageStickyNoteCommand}">
                                     <MenuItem.Icon>
                                         <Image Source="Icons/imagenote.png"/>
                                     </MenuItem.Icon>
