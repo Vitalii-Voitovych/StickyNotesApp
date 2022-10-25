@@ -11,6 +11,7 @@ namespace StickyNotesApp
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             StrokeCollection strokes;
+            if (value == null) return value!;
             using (MemoryStream ms = new MemoryStream((byte[])value))
             {
                 strokes = new StrokeCollection(ms);

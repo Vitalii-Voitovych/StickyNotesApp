@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:StickyNotesApp"
         xmlns:uc="clr-namespace:StickyNotesApp.UserControls"
         xmlns:viewModel="clr-namespace:StickyNotesApp.MVVM.ViewModel"
-        xmlns:services="clr-namespace:StickyNotesApp.Services"
         mc:Ignorable="d"
         Title="MainWindow" Height="608" Width="353"
         ResizeMode="NoResize"
@@ -105,9 +104,10 @@
                                              Text="{Binding Text}"/>
                                 <InkCanvas Background="Transparent"
                                            Grid.Row="1"
-                                           Margin="7,30,7,0"
+                                           Margin="7,15,7,0"
                                            Width="272"
-                                           Height="238"
+                                           MinHeight="0"
+                                           MaxHeight="238"
                                            EditingMode="None"
                                            Strokes="{Binding Strokes, Converter={StaticResource StrokeCollectionConverter}}"/>
                             </Grid>
@@ -121,7 +121,8 @@
                     BorderThickness="0,0.6,0,0"
                     Grid.Row="2">
                 <DockPanel Margin="16,0">
-                    <TextBox Style="{StaticResource SearchTextBoxStyle}"/>
+                    <TextBox Style="{StaticResource SearchTextBoxStyle}"
+                             Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}"/>
                     <uc:IconButton Icon="Icons/plus.png"
                                    HorizontalAlignment="Right"
                                    Style="{StaticResource ButtonContextMenuStyle}">

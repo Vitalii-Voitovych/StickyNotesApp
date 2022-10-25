@@ -4,17 +4,33 @@ using StickyNotesApp.MVVM.Models;
 using StickyNotesApp.MVVM.View;
 using StickyNotesApp.Services;
 using System.ComponentModel;
-using System.IO;
+using System.Linq;
 using System.Windows;
-using System.Windows.Ink;
 
 namespace StickyNotesApp.MVVM.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
         [ObservableProperty]
+        private BindingList<StickyNote> tempStickyNotes = null!;
+
+        [ObservableProperty]
         private BindingList<StickyNote> stickyNotes = null!;
-        
+
+        private string filter = "";
+        public string Filter
+        {
+            get => filter;
+            set
+            {
+                if (SetProperty(ref filter, value))
+                {
+                    
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         [RelayCommand]
         private void OpenNewTextStickyNote()
         {
