@@ -49,11 +49,7 @@ namespace StickyNotesApp.MVVM.ViewModel
         private void SaveStickyNote(Window window)
         {
             StickyNote.Color = new BrushConverter().ConvertToString(Color)!;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                Strokes.Save(ms);
-                StickyNote.Strokes = ms.ToArray();
-            }
+            StickyNote.Strokes = StrokeCollectionToByteArray(Strokes);
             stickyNotes.Add(StickyNote);
             StickyNoteDataSaver.Save(stickyNotes, Settings.Path);
             window.DialogResult = true;
@@ -64,6 +60,15 @@ namespace StickyNotesApp.MVVM.ViewModel
         private void Close(Window window)
         {
             window.Close();
+        }
+
+        private byte[] StrokeCollectionToByteArray(StrokeCollection strokes)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                strokes.Save(ms);
+                return ms.ToArray();
+            }
         }
 
         public NewImageStickyNoteViewModel()

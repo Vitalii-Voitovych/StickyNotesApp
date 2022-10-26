@@ -56,7 +56,6 @@
             <!-- Тіло застосунку -->
             <ListView Grid.Row="1"
                       ItemsSource="{Binding StickyNotes}"
-                      HorizontalAlignment="Center"
                       BorderThickness="0"
                       x:Name="StickNoteList">
                 <ListView.ItemContainerStyle>

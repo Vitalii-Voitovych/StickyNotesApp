@@ -25,7 +25,14 @@ namespace StickyNotesApp.MVVM.ViewModel
             {
                 if (SetProperty(ref filter, value))
                 {
-                    
+                    if (string.IsNullOrWhiteSpace(filter))
+                    {
+                        StickyNotes = new(TempStickyNotes);
+                    }
+                    else
+                    {
+                        StickyNotes = new(TempStickyNotes.Where(s => s.Text is not null && s.Text.Contains(filter, System.StringComparison.OrdinalIgnoreCase)).ToList());
+                    }
                     OnPropertyChanged();
                 }
             }
@@ -48,6 +55,7 @@ namespace StickyNotesApp.MVVM.ViewModel
             if (view.ShowDialog() == true)
             {
                 StickyNotes = StickyNoteDataSaver.Load(Settings.Path);
+                TempStickyNotes = new(StickyNotes);
             }
         }
 
@@ -74,6 +82,7 @@ namespace StickyNotesApp.MVVM.ViewModel
         {
             StickyNotes = StickyNoteDataSaver.Load(Settings.Path);
             StickyNoteDataSaver.Save(StickyNotes, Settings.Path);
+            TempStickyNotes = new(StickyNotes);
         }
     }
 }
